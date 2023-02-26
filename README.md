@@ -41,6 +41,11 @@ Make sure the rust environment is set up to target wasm:
 $ rustup target add wasm32-unknown-unknown
 ```
 
+Install trunk with Cargo:
+```
+$ cargo install --locked trunk
+```
+
 ## Run
 Build and Run the Backend, this serves the backend api at `http://localhost:8000`:
 ```
