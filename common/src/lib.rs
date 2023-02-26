@@ -19,7 +19,10 @@ pub struct OwnerResponse {
 
 impl OwnerResponse {
     pub fn of(owner: Owner) -> OwnerResponse {
-        OwnerResponse { id: owner.id, name: owner.name }
+        OwnerResponse {
+            id: owner.id,
+            name: owner.name,
+        }
     }
 }
 
@@ -29,7 +32,7 @@ pub struct Pet {
     pub name: String,
     pub owner_id: i32,
     pub animal_type: String,
-    pub color: Option<String>
+    pub color: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
@@ -49,6 +52,11 @@ pub struct PetResponse {
 
 impl PetResponse {
     pub fn of(pet: Pet) -> PetResponse {
-        PetResponse { id: pet.id, name: pet.name, animal_type: pet.animal_type, color: pet.color }
+        PetResponse {
+            id: pet.id,
+            name: pet.name,
+            animal_type: pet.animal_type,
+            color: pet.color,
+        }
     }
 }
