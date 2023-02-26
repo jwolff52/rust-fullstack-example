@@ -36,14 +36,14 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE 'postgres' TO dev;
 postgres=# GRANT ALL ON SCHEMA public TO dev;
 ```
 
-Make sure the rust environment is set up to target wasm:
-```
-$ rustup target add wasm32-unknown-unknown
-```
-
 Install trunk with Cargo:
 ```
 $ cargo install --locked trunk
+```
+
+Make sure the rust environment is set up to target wasm:
+```
+$ rustup target add wasm32-unknown-unknown
 ```
 
 ## Run
