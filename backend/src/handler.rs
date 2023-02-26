@@ -1,4 +1,4 @@
-use common::{PetRequest, PetResponse, OwnerResponse};
+use common::{PetRequest, PetResponse, OwnerResponse, OwnerRequest};
 use warp::{reject, reply::json, Reply, hyper::StatusCode};
 
 use crate::{db, DBPool, Result};
@@ -36,4 +36,17 @@ pub async fn list_owners_handler(db_pool: DBPool) -> Result<impl Reply> {
     Ok(json::<Vec<_>>(
         &owners.into_iter().map(OwnerResponse::of).collect(),
     ))
+}
+
+pub async fn fetch_owner_handler(id: i32, db_pool: DBPool) -> Result<impl Reply> {
+    let owner = db::owner::fetch_one(&db_pool, id).await.map_err(reject::custom)?;
+    Ok(json(&OwnerResponse::of(owner)))
+}
+
+pub async fn create_owner_handler(body: OwnerRequest, db_pool: DBPool) -> Result<impl Reply> {
+    Ok(json(&OwnerResponse::of(
+        db::owner::create(&db_pool, body)
+            .await
+            .map_err(reject::custom)?,  
+    )))
 }
